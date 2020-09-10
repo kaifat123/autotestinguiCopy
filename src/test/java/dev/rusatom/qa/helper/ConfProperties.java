@@ -14,7 +14,8 @@ public class ConfProperties {
 
     static {
         try {
-            fileInputStream = new FileInputStream("src/test/resources/config/conf.properties");
+            String stand = System.getProperty("stand")==null ? "test" : System.getProperty("stand");
+            fileInputStream = new FileInputStream(String.format("src/test/resources/config/stands/%s/conf.properties", stand));
             PROPERTIES = new Properties();
             PROPERTIES.load(fileInputStream);
             logger.info("Файл с настройками успешно загружен");

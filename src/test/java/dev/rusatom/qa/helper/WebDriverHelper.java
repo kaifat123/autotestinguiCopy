@@ -10,20 +10,16 @@ public class WebDriverHelper {
     private static WebDriver driver;
 
     public static WebDriver getDriver() {
-        if (driver == null) {
             String browser = ConfProperties.getProperty("driver.browser.name");
             browser = browser.toLowerCase();
             driver = WebDriverFactory.create(browser);
             logger.info("Драйвер " + browser + " поднят");
-        }
         return driver;
     }
 
     public static WebDriver getDriver(String value) {
-        if (driver == null) {
             driver = WebDriverFactory.create(value.toLowerCase());
             logger.info("Драйвер " + value + " поднят");
-        }
         return driver;
     }
 }

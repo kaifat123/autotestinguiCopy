@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 public class DriverHooks {
-    WebDriver driver;
+    private static WebDriver driver;
     protected static WebDriverWait wait;
     public static Logger logger = LogManager.getLogger(DriverHooks.class);
 
-   @Before
-    public void setUp() {
+    @Before
+    public static void setUp() {
 
         String browser = System.getProperty("browser");
         if (browser == null) {
@@ -30,9 +30,13 @@ public class DriverHooks {
 
     }
 
+    public static WebDriver getWebDriver() {
+        return driver;
+    }
+
     @After
-    public void setDown() {
-            driver.quit();
-            logger.info("Закрытие браузера");
+    public static void setDown() {
+        driver.quit();
+        logger.info("Закрытие браузера");
     }
 }
