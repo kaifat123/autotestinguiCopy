@@ -13,6 +13,10 @@ public class WebDriverHelper {
             String browser = ConfProperties.getProperty("driver.browser.name");
             browser = browser.toLowerCase();
             driver = WebDriverFactory.create(browser);
+        ChromeOptions options = new ChromeOptions();
+
+options.addArguments("--headless");
+        driver = new ChromeDriver(options);
             logger.info("Драйвер " + browser + " поднят");
         return driver;
     }
