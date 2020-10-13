@@ -43,11 +43,12 @@
             <version>4.2.0</version>
         </dependency>
         <!-- END Selenium WEbDrivers -->
-        <!--<dependency>
-            <groupId>ru.sbtqa.tag.pagefactory</groupId>
-            <artifactId>page-factory-core</artifactId>
-            <version>15.6.0</version>
-        </dependency>-->
+        <dependency>
+            <groupId>ru.sbtqa.tag.datajack</groupId>
+            <artifactId>datajack-api</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+
 
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -77,6 +78,12 @@
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber-jvm</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber5-jvm</artifactId>
             <version>${allure.version}</version>
         </dependency>
@@ -93,6 +100,8 @@
                     <argLine>
                         -Dfile.encoding=UTF-8
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dcucumber.options="--tags ${TAGS}
+                        --plugin io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm"
                     </argLine>
                     <systemPropertyVariables>
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>

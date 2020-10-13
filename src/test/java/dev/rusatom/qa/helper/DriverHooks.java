@@ -2,8 +2,11 @@ package dev.rusatom.qa.helper;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,7 +38,19 @@ public class DriverHooks {
     }
 
     @After
-    public static void setDown() {
+    public static void setDown(Scenario scenario) {
+        if (scenario.isFailed()) {
+            try {
+                byte[] screenshot = ((TakesScreenshot) driver)
+                        .getScreenshotAs(OutputType.BYTES);
+                scenario.embed(screenshot, "image/png");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                driver.quit();
+                logger.info("Закрытие браузера");
+            }
+        }
         driver.quit();
         logger.info("Закрытие браузера");
     }

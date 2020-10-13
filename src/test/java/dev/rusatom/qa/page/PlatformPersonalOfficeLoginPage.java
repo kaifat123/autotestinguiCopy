@@ -447,7 +447,7 @@ public class PlatformPersonalOfficeLoginPage {
     public void openStartPage() {
         String url = ConfProperties.getProperty("start.url");
         driver.get(url);
-        Allure.addAttachment("Открыта страница по URL ", url);
+        Allure.attachment("Открыта страница по URL ", url);
         logger.info(String.format("Открыта страница %s", url));
     }
 }

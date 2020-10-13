@@ -9,6 +9,7 @@ import io.cucumber.java.ru.Тогда;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Flaky;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -26,6 +27,7 @@ public class LoginPageStepDefs {
         loginPage.openStartPage();
     }
 
+    @Step
     @И("Вводим логин {string}")
     public void inputLogin(String login) {
         if ("по-умолчанию".equals(login)) {
@@ -34,13 +36,13 @@ public class LoginPageStepDefs {
             loginPage.inputLogin(login);
         }
     }
-
+    @Step
     @И("Вводим пароль {string}")
-    public void inputPwd(String pwd) {
-        if ("по-умолчанию".equals(pwd)) {
+    public void inputPwd(String password) {
+        if ("по-умолчанию".equals(password)) {
             loginPage.inputPasswd();
         } else {
-            loginPage.inputPasswd(pwd);
+            loginPage.inputPasswd(password);
         }
     }
 
@@ -283,10 +285,16 @@ public class LoginPageStepDefs {
     }
 
     @Тогда("Проверить, что отображается ссылка на условия соглашения на странице регистрации")
-    public void checkLinkTermOfUse() throws Exception {
-        Assert.assertEquals("Текст ссылки на соглашение отличается от ожидаемого",loginPage.getTermsOfUse().getText(),"Условиями использования");
+    public void checkLinkTermOfUse() {
+        Assert.assertEquals("Текст ссылки на соглашение отличается от ожидаемого", loginPage.getTermsOfUse().getText(), "Условиями использования");
         loginPage.getTermsOfUse().click();
-        Thread.sleep(4000);
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Unexpected value: ");
+        }
+        Allure.attachment("URL Соглашения", driver.getCurrentUrl());
         saveAllureScreenshot();
     }
 
@@ -298,8 +306,9 @@ public class LoginPageStepDefs {
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
-    protected byte[] saveAllureScreenshot()
-    { return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES); }
+    protected byte[] saveAllureScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
 }
 
 

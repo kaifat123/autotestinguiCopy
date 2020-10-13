@@ -1,9 +1,28 @@
 запуск проекта осуществляется стандартным вызовом _**mvn clean test**_
-по умолчанию используется параметр `src/test/resources/config/conf.properties` **_driver.browser.name_**
+по умолчанию используется параметр `src/test/resources/config/stands/test/conf.properties` 
 
-Пример вызова теста _**clean test -Dbrowser=chrome -Dstand=fe26 -Dcucumber.filter.tags=@test**_
 
-доступна смена браузера в виде добавления опции _**-Dbrowser=yourBrowser**_
+**Кастомизация**:
+
+На данный момент существует 3 варианта стендов:
+````
+test
+fe26
+tomsk
+````
+По-умолчанию используется стенд _**test**_
+
+из командной строки задется параметром _**-Dstand=yourStand**_
+
+**Кроссбраузерность**:
+
+**_driver.browser.name=chrome_**
+
+доступна смена браузера в виде добавления опции 
+
+_**-Dbrowser=yourBrowser**_
+
+
 из следующего списка: 
 ````
 chrome
@@ -11,3 +30,14 @@ firefox
 edge
 ie   //лучше не пользоваться, ведет себя крайне непредсказуемо
 ````
+
+**Гибкость тестового набора**
+
+Возможность "на лету" изменять запускаемый набор тестов
+
+пример _**-DTAGS=@test**_
+
+**Пример кастомизированного запуска тестов**
+```maven script
+mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@smokeTomsk
+```
