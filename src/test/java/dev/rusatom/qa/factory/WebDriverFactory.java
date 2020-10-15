@@ -36,7 +36,10 @@ class DriverChrome implements Driver {
 
     public WebDriver create() {
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless");
+        return new ChromeDriver((ChromeOptions) options);
     }
 
     @Override
