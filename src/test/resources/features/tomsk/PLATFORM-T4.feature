@@ -1,5 +1,5 @@
 # language: ru
-@smoke @smokeTomsk
+@smoke @smokeTomsk @test
 Функционал: Авторизация в личном кабинете
 
   @TmsLink=PLATFORM-T4 @Issue=PLATFORM-82 @severity=blocker
