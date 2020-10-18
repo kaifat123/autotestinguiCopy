@@ -6,6 +6,7 @@ pipeline {
             steps {
                 git 'https://github.com/kaifat123/autotestinguiCopy.git'
                 slackSend channel: 'qa-java-2020-06', message: 'Git pull completed'
+
                     }
                 }
         stage("Run tests"){
