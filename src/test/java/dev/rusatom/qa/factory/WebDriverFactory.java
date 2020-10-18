@@ -38,7 +38,8 @@ class DriverChrome implements Driver {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
 
-        options.addArguments("--headless");
+        options.addArguments("headless");
+        options.addArguments("window-size=1920,1080");
         return new ChromeDriver((ChromeOptions) options);
     }
 

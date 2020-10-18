@@ -1,5 +1,5 @@
 # language: ru
-@smoke @smokeTomsk @test
+@smoke @smokeTomsk
 Функционал: Мой личный кабинет
 
   @TmsLink=PLATFORM-T5 @Issue=PLATFORM-82 @severity=blocker
