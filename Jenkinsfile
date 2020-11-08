@@ -22,12 +22,7 @@ pipeline {
         }
         stage("sendMail"){
             steps{
-            script{
-            def result = '${JOB_NAME.toString()} - ${BUILD_NUMBER.toString()}'+
-                         'status job - ${currentBuild.currentResult.toString()}'+
-                         '${BRANCH_NAME.toString()}'}
-
-            emailext body: '''"status job - ${currentBuild.currentResult}
+            emailext body: '''"status job - ${BUILD_NUMBER.currentResult}
             ${JOB_NAME} - ${BUILD_NUMBER}
             ${BRANCH_NAME}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
