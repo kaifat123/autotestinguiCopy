@@ -22,7 +22,7 @@ pipeline {
         }
         stage("sendMail"){
             steps{
-                def result=readFile("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt")
+                script{def result=readFile("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt")}
             emailext body: '''"
             $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
             ${result}
