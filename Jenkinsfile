@@ -20,9 +20,9 @@ pipeline {
             }
         }*/
         stage("sendMail"){
-            steps{mail bcc: '', body: '''"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
+            steps{emailext body: '''"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
                               "status job - ${currentBuild.currentResult}"
-                              "${env.BRANCH_NAME}"''', cc: '', from: '', replyTo: '', subject: 'Pipeline job`s', to: 'darksaid44@gmail.com'}
+                              "${env.BRANCH_NAME}"''', subject: 'Pipeline job`s', to: 'darksaid44@gmail.com'}
         }
     }
 }
