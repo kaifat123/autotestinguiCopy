@@ -21,9 +21,9 @@ pipeline {
         }
         stage("sendMail")
             steps{
-            mail bcc: '', body: '"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
-            "status job - ${currentBuild.currentResult}"
-            "${env.BRANCH_NAME}" '
+            mail bcc: '', body: body: '''"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
+                                            "status job - ${currentBuild.currentResult}"
+                                            "${env.BRANCH_NAME}"'''
              , cc: '', from: '', replyTo: '', subject: 'Pipeline job`s', to: 'darksaid44@gmail.com'
             }
     }
