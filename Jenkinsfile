@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script { def result = readFile("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt") }
                 emailext body:'''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:'''+
-            $result+
+            ${result}+
             '''Check console output at $BUILD_URL to view the results.''',
                         subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'
             }
