@@ -26,7 +26,7 @@ pipeline {
 
         stage("sendMail") {
             steps {
-                emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - BRANCH  \'$GIT_BRANCH\' - $BUILD_STATUS:
+                emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - BRANCH  \'$CHANGE_BRANCH\' - $BUILD_STATUS:
 ''' +
                         readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt") +
 
