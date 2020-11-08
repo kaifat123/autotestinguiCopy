@@ -20,9 +20,10 @@ pipeline {
                 //allure jdk: '', results: [[path: 'target/allure-results']]
             }
         }
-        def result = readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt")
+
         stage("sendMail") {
             steps {
+                def result = readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt")
                 emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:'''+
 ${result} +
 '''Check console output at $BUILD_URL to view the results.''',
