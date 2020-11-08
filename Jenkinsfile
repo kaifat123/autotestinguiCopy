@@ -14,11 +14,12 @@ pipeline {
                 bat "mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@smokeTomsk"
                     }
                 }
-        /*stage("Generate report"){
+        stage("Generate report"){
             steps{
-            allure jdk: '', results: [[path: 'target/allure-results']]
+            sh "echo report is generated here"
+            //allure jdk: '', results: [[path: 'target/allure-results']]
             }
-        }*/
+        }
         stage("sendMail"){
             steps{emailext body: '''"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
                               "status job - ${currentBuild.currentResult}"
