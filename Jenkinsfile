@@ -11,17 +11,19 @@ pipeline {
                 }
         stage("Run tests"){
             steps{
-                bat "mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@test"
+                bat "mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@smokeTomsk"
                     }
                 }
         stage("Generate report"){
             steps{
-            echo '!!!!!!!!!!!!! Report is generated here !!!!!!!!!!!!!'
+            echo 'report is generated here'
             //allure jdk: '', results: [[path: 'target/allure-results']]
             }
         }
         stage("sendMail"){
-            steps{emailext body: '''"${JOB_NAME} - ${BUILD_NUMBER} - ${currentResult} - ${BRANCH_NAME}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
+            steps{emailext body: '''"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
+                              "status job - ${currentBuild.currentResult}"
+                              "${env.BRANCH_NAME}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
 }
