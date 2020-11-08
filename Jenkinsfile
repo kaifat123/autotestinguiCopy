@@ -38,7 +38,7 @@ Check console output at ${BUILD_URL} to view the results.''',
         }
         stage("BackUp job"){
             steps{
-                bat "C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\jenkins-backup-script-master\\jenkins-backup.sh C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\jenkins_backup archive.tar.gz"
+                bat "C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\jenkins-backup-script-master\\jenkins-backup.sh C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\jenkins_backup archive.tar.gz"
             }
         }
     }
