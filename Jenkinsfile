@@ -16,7 +16,7 @@ pipeline {
                 }
         stage("Generate report"){
             steps{
-          //  allure jdk: '', results: [[path: 'target/allure-results']]
+            allure jdk: '', results: [[path: 'target/allure-results']]
             }
         }
         stage("sendMail"){
