@@ -13,7 +13,7 @@ pipeline {
         }
         stage("Run tests") {
             steps {
-                slackSend channel: "qa-java-2020-06", color: "good", message: "Run tests to job ${JOB_NAME} ${BUILD_NUMBER}", tokenCredentialId: "d03333ba-0bf5-4619-864d-99ccfb8a1375"
+                slackSend channel: "qa-java-2020-06", color: "good", message: "Run tests to job ${JOB_NAME} Build # ${BUILD_NUMBER}", tokenCredentialId: "d03333ba-0bf5-4619-864d-99ccfb8a1375"
                 bat "mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@smokeTomsk"
             }
         }
