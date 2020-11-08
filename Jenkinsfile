@@ -27,7 +27,7 @@ pipeline {
 
                         readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt")+
 
-                +'''Check console output at $BUILD_URL to view the results.''',
+                '''Check console output at $BUILD_URL to view the results.''',
                         subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'
             }
         }
