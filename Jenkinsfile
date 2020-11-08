@@ -26,7 +26,7 @@ pipeline {
                     env.result = readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt")
                 echo "${env.result}"}
                 emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
-
+${evn.result}
 Check console output at $BUILD_URL to view the results.''',
                         subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'
             }
