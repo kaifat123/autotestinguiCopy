@@ -23,7 +23,7 @@ pipeline {
         stage("sendMail"){
             steps{emailext body: '''"${JOB_NAME} - ${BUILD_NUMBER}"
                               "status job - ${currentBuild.currentResult}"
-                              "${BRANCH_NAME}"''', subject: 'Pipeline job`s', to: 'darksaid44@gmail.com'}
+                              "${BRANCH_NAME}"''', subject: 'Pipeline job`s', to: 'dark_said@mail.ru'}
         }
     }
 }
