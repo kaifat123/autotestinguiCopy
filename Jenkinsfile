@@ -24,10 +24,11 @@ pipeline {
             steps{
             script{
             def result = '${JOB_NAME} - ${BUILD_NUMBER}'+
-                         'status job - ${currentBuild.currentResult}'+
+                         'status job - ${currentBuild.currentResult.toString()}'+
                          '${BRANCH_NAME}'}
-                         echo '%result%'
-            emailext body: '''result''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
+                         echo "result = %result%
+                         ${result}"
+            emailext body: '''"${result}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
 }
