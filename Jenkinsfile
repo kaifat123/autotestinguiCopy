@@ -16,14 +16,14 @@ pipeline {
                 }
         stage("Generate report"){
             steps{
-            sh "echo report is generated here"
+            sh "echo 'report is generated here'"
             //allure jdk: '', results: [[path: 'target/allure-results']]
             }
         }
         stage("sendMail"){
-            steps{emailext body: '''"${env.JOB_NAME} - ${env.BUILD_NUMBER}"
+            steps{emailext body: '''"${JOB_NAME} - ${BUILD_NUMBER}"
                               "status job - ${currentBuild.currentResult}"
-                              "${env.BRANCH_NAME}"''', subject: 'Pipeline job`s', to: 'darksaid44@gmail.com'}
+                              "${BRANCH_NAME}"''', subject: 'Pipeline job`s', to: 'darksaid44@gmail.com'}
         }
     }
 }
