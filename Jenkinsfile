@@ -22,11 +22,10 @@ pipeline {
         }
         stage("sendMail") {
             steps {
-                script { def result = readFile("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt")
-                echo "$result"}
-                emailext body:'''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:'''+
-            text(${result})+
-            '''Check console output at $BUILD_URL to view the results.''',
+                script { def result = File("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt") }
+                echo "$result"
+                emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+                                  Check console output at $BUILD_URL to view the results.''',
                         subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'
             }
         }
