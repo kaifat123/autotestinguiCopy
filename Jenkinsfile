@@ -20,12 +20,12 @@ pipeline {
                 //allure jdk: '', results: [[path: 'target/allure-results']]
             }
         }
-        env.result = readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt")
+        def result = readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt")
         stage("sendMail") {
             steps {
-                emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
-${evn.result}
-Check console output at $BUILD_URL to view the results.''',
+                emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:'''+
+${result} +
+'''Check console output at $BUILD_URL to view the results.''',
                         subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'
             }
         }
