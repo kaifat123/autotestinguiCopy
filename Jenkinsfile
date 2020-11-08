@@ -26,7 +26,7 @@ pipeline {
             def result = '${JOB_NAME} - ${BUILD_NUMBER}'+
                          'status job - ${currentBuild.currentResult}'+
                          '${BRANCH_NAME}'}
-                         echo '${result}''
+                         echo '${result}'
             emailext body: '''result''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
