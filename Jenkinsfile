@@ -23,8 +23,8 @@ pipeline {
         stage("sendMail") {
             steps {
                 script {
-                    def result = file("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt") }
-                echo "$result"
+                    def result = file("target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt")
+                echo "$result"}
                 emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
                                   Check console output at $BUILD_URL to view the results.''',
                         subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'
