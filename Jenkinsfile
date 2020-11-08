@@ -26,12 +26,12 @@ pipeline {
 
         stage("sendMail") {
             steps {
-                emailext body: """${PROJECT_NAME} - Build # ${BUILD_NUMBER} - BRANCH  \'${BRANCH_NAME}, ${env.BRANCH_NAME}, ${GIT_BRANCH}, ${env.GIT_BRANCH}\' - ${BUILD_STATUS}:
-""" +
+                emailext body: '''${PROJECT_NAME} - Build # ${BUILD_NUMBER} - BRANCH  \'${BRANCH_NAME}, ${env.BRANCH_NAME}, ${GIT_BRANCH}, ${env.GIT_BRANCH}\' - ${BUILD_STATUS}:
+''' +
                         readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt") +
 
-                        """
-Check console output at ${BUILD_URL} to view the results.""",
+                        '''
+Check console output at ${BUILD_URL} to view the results.''',
                         subject: "Pipeline, result ${BUILD_NUMBER} job`s ", to: "dark_said@mail.ru"
                // slackSend channel: "qa-java-2020-06", color: "good", message: "Job ${JOB_NAME}-${BUILD_NUMBER} is completed", tokenCredentialId: "d03333ba-0bf5-4619-864d-99ccfb8a1375"
             }
