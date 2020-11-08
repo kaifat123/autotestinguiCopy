@@ -22,9 +22,10 @@ pipeline {
         }
         stage("sendMail"){
             steps{
-            emailext body: '''"'status job' - ${currentBuild.currentResult}
+            emailext body: '''"${currentBuild.currentResult}
             ${JOB_NAME} - ${BUILD_NUMBER}
-            ${BRANCH_NAME}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
+            ${BRANCH_NAME}"''',
+            subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
 }
