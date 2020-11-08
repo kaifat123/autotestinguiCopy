@@ -21,9 +21,11 @@ pipeline {
             }
         }
         stage("sendMail"){
-            steps{emailext body: '''"${JOB_NAME} - ${BUILD_NUMBER}"
-                              "status job - ${currentResult}"
-                              "${BRANCH_NAME}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
+            steps{
+            def result = '${JOB_NAME} - ${BUILD_NUMBER}'+
+                         'status job - ${currentBuild.currentResult}'+
+                         '${BRANCH_NAME}'
+            emailext body: '''${result}''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
 }
