@@ -5,7 +5,7 @@ pipeline {
         stage('Download project') {
             steps {
                 git 'https://github.com/kaifat123/autotestinguiCopy.git'
-                slackSend channel: 'qa-java-2020-06', message: 'Git pull completed'
+               // slackSend channel: 'qa-java-2020-06', message: 'Git pull completed'
 
                     }
                 }
@@ -26,8 +26,8 @@ pipeline {
             def result = '${JOB_NAME} - ${BUILD_NUMBER}'+
                          'status job - ${currentBuild.currentResult.toString()}'+
                          '${BRANCH_NAME}'}
-                         echo "result = %result%
-                         ${result}"
+                         echo "result = %result%"
+                         echo "${result}"
             emailext body: '''"${result}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
