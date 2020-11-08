@@ -11,7 +11,7 @@ pipeline {
                 }
         stage("Run tests"){
             steps{
-                bat "mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@smokeTomsk"
+                bat "mvn clean test -Dbrowser=chrome -Dstand=tomsk -DTAGS=@test"
                     }
                 }
         stage("Generate report"){
@@ -21,9 +21,7 @@ pipeline {
             }
         }
         stage("sendMail"){
-            steps{emailext body: '''"${JOB_NAME} - ${BUILD_NUMBER}, /n
-                              status job - ${currentResult}, /n
-                              ${BRANCH_NAME}"''', subject: 'Pipeline job`s', to: 'dark_said@mail.ru'}
+            steps{emailext body: '''"${JOB_NAME} - ${BUILD_NUMBER} - ${currentResult} - ${BRANCH_NAME}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
 }
