@@ -23,7 +23,7 @@ pipeline {
         stage("sendMail") {
             steps {
                 script {
-                    env.result = sh (script: "./target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt",returnStdout: true)
+                    env.result = readFile("//target/surefire-reports/dev.rusatom.qa.CucumberRunnerTest.txt")
                 echo "${env.result}"}
                 emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
