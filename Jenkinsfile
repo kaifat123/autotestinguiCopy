@@ -23,12 +23,11 @@ pipeline {
         stage("sendMail"){
             steps{
             script{
-            def result = '${JOB_NAME} - ${BUILD_NUMBER}'+
+            def result = '${JOB_NAME.toString()} - ${BUILD_NUMBER.toString()}'+
                          'status job - ${currentBuild.currentResult.toString()}'+
-                         '${BRANCH_NAME}'}
-                         echo "result = %result%"
-                         echo "${result}"
-            emailext body: '''"${result}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
+                         '${BRANCH_NAME.toString()}'}
+                         echo "${result.toString()}"
+            emailext body: '''"${result.toString()}"''', subject: 'Pipeline, result ${BUILD_NUMBER} job`s ', to: 'dark_said@mail.ru'}
         }
     }
 }
