@@ -16,7 +16,7 @@ pipeline {
                 }
         stage("Generate report"){
             steps{
-            sh "echo 'report is generated here'"
+            echo 'report is generated here'
             //allure jdk: '', results: [[path: 'target/allure-results']]
             }
         }
