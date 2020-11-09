@@ -29,11 +29,11 @@ pipeline {
 
         stage("sendMail") {
             steps {
-                emailext body: '''${PROJECT_NAME} - Build #${BUILD_NUMBER} - BRANCH: ''' + "${BRANCH_NAME}" + ''' - Status: ${BUILD_STATUS}\n''' +"${TAG}\n"+
+                emailext body: '''${PROJECT_NAME} - Build #${BUILD_NUMBER} - BRANCH: ''' + "${BRANCH_NAME}" + ''' - Status: ${BUILD_STATUS}\n''' +
                         readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt") +
                         '''\nCheck console output at ${BUILD_URL} to view the results.''',
                         subject: "Pipeline, result ${BUILD_NUMBER} job`s ", to: "dark_said@mail.ru"
-                slackSend channel: "qa-java-2020-06", color: "good", message: "Job ${JOB_NAME}-${BUILD_NUMBER} in branch: ${BRANCH_NAME} is completed \n" +
+                slackSend channel: "qa-java-2020-06", color: "good", message: "Job ${TAG} in branch: ${BRANCH_NAME} is completed \n" +
                         readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt"), tokenCredentialId: "d03333ba-0bf5-4619-864d-99ccfb8a1375"
             }
         }
