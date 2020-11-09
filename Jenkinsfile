@@ -29,7 +29,7 @@ pipeline {
 
         stage("sendMail") {
             steps {
-                emailext body: '''${PROJECT_NAME} - Build # ${BUILD_NUMBER} - BRANCH'''+${BRANCH_NAME}+'''  \'${BRANCH_NAME}, ${env.BRANCH_NAME}, ${GIT_BRANCH}, ${env.GIT_BRANCH}\' - ${BUILD_STATUS}:
+                emailext body: '''${PROJECT_NAME} - Build # ${BUILD_NUMBER} - BRANCH: '''+"${BRANCH_NAME}"+'''  \'${BRANCH_NAME}, ${env.BRANCH_NAME}, ${GIT_BRANCH}, ${env.GIT_BRANCH}\' - ${BUILD_STATUS}:
 ''' +
                         readFile("\\target\\surefire-reports\\dev.rusatom.qa.CucumberRunnerTest.txt") +
 
